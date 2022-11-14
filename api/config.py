@@ -1,6 +1,9 @@
 import os
 
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+
 class BaseConfig:
     DEBUG = False
     SECRET_KEY = '\xb2\xae\x00\x87\x00\xde\x16L\xa1PD\\\xe7\xcf\x8b\x11'
@@ -10,12 +13,11 @@ class BaseConfig:
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite://'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'dev.db')
 
 
 class ProductionConfig(BaseConfig):
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask-react-todo.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite://' + os.path.join(basedir, 'flask-react-todo.db')
 
 
 config = {
