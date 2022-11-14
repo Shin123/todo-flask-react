@@ -20,7 +20,4 @@ class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite://' + os.path.join(basedir, 'flask-react-todo.db')
 
 
-config = {
-    'dev': 'api.config.DevelopmentConfig',
-    'prod': 'api.config.ProductionConfig'
-}
+config = {'dev': 'api.config.DevelopmentConfig', 'prod': 'api.config.ProductionConfig'}

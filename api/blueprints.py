@@ -22,10 +22,7 @@ def add_todo():
     post_data = request.get_json()
     print(post_data)
     if not post_data:
-        response = {
-            'code': 400,
-            'message': 'Invalid payload.'
-        }
+        response = {'code': 400, 'message': 'Invalid payload.'}
         return jsonify(response), response.get('code')
 
     task = post_data.get('task')
@@ -33,11 +30,9 @@ def add_todo():
     db.session.add(todo)
     db.session.commit()
 
-    response = {
-        'code': 201,
-        'message': 'Task added.'
-    }
+    response = {'code': 201, 'message': 'Task added.'}
     return jsonify(response), response.get('code')
+
 
 @todos.route('/todos/<int:todo_id>', methods=['PATCH'])
 def update_todo():

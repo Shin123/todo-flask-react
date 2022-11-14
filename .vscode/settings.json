@@ -14,5 +14,11 @@
     "python.linting.pylintEnabled": false,
     "python.formatting.provider": "black",
     "python.linting.enabled": true,
+    "python.formatting.blackArgs": [
+        "--skip-string-normalization",
+    ],
+    "[python]": {
+        "editor.formatOnSave": true
+    },
     
 }
