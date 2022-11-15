@@ -15,3 +15,7 @@ class Todo(db.Model):
         if len(self.task) < 40:
             return '<Task {}'.format(self.task)
         return '<Task {}'.format(self.task[:40])
+
+    def to_json(self):
+        json_todo = {'id': self.id, 'task': self.task, 'done': self.done}
+        return json_todo

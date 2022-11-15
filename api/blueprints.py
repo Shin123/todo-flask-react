@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from api.models import Todo, db
-from api.utils import todo_to_dict, generate_response
+from api.utils import generate_response
 
 
 todos = Blueprint('todos', __name__)
@@ -8,7 +8,8 @@ todos = Blueprint('todos', __name__)
 
 @todos.route('/todos', methods=['GET'])
 def list_all_todos():
-    return jsonify([*map(todo_to_dict, Todo.query.all())])
+    todos = Todo.query.all()
+    return jsonify([todo.to_json() for todo in todos])
 
 
 @todos.route('/todos/<int:todo_id>', methods=['GET'])
@@ -16,13 +17,12 @@ def list_todo(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     if not todo:
         return generate_response(404, 'Task not found.')
-    return jsonify(todo_to_dict(todo))
+    return jsonify(todo.to_json())
 
 
 @todos.route('/todos/', methods=['POST'])
 def add_todo():
     post_data = request.get_json()
-    print(post_data)
     if not post_data:
         return generate_response(400, 'Invalid payload.')
 

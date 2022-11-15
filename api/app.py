@@ -1,10 +1,12 @@
 import os
 from flask import Flask, jsonify
+from dotenv import load_dotenv
 from flask_cors import CORS
 from api.config import config
 from api.models import db
 from api.blueprints import todos, generate_response
 
+load_dotenv(dotenv_path="./.env.local")
 
 app = Flask(__name__)
 CORS(app)
