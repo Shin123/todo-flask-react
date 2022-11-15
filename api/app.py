@@ -1,11 +1,13 @@
 import os
 from flask import Flask, jsonify
+from flask_cors import CORS
 from api.config import config
 from api.models import db
 from api.blueprints import todos, generate_response
 
 
 app = Flask(__name__)
+CORS(app)
 
 env_config = os.getenv('FLASK_CONFIG', 'dev')
 
