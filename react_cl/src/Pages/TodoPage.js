@@ -10,6 +10,7 @@ export const TodoPage = () => {
 
   const getTodos = async () => {
     try {
+      console.log(5555);
       const res = await axios.get(`/todos`);
       setTodos(res.data || []);
       toast.success(res.message);

@@ -8,7 +8,7 @@ export const Card = ({ listOfTodos }) => {
         return (
           <ul key={todo.id}>
             <Link to={`${todo.id}`}>
-              <li>{todo.task}</li>
+              <li>{todo.done ? <del>todo.task</del> : todo.task}</li>
             </Link>
           </ul>
         );
